@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en" dir="ltr">
+  <head>
+    <link href="https://fonts.googleapis.com/css?family=Waiting+for+the+Sunrise" rel="stylesheet" type="text/css"/>
+    <style>
+      body {
+      font-family: "Waiting for the Sunrise", cursive;
+      background-color: chocolate;
+      color: white;
+      font-size:30px;
+      margin: 10px 50px;
+      letter-spacing: 6px;
+      font-weight: bold;
+    }
+    </style>
+
+
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <body>
+    <div id="typedtext"></div>
+  </body>
+</html>
+
+<script type="text/javascript">
+  var aText = new Array(
+
+    "",
+  "Honey, what will ",
+  "tomorrow bring?",
+  "",
+  "I don’t know, really.",
+  "Perhaps a glimpse of your",
+    "half-asleep smile on sunrise",
+    "A gentle touch of your hand",
+    "and sweet scent of your lips",
+    "from our last night’s wine",
+    "",
+    "Honey, I don’t know, really",
+    "But I always love it",
+    "when you're with me."
+  );
+  var iSpeed = 100; // time delay of print out
+  var iIndex = 0; // start printing array at this posision
+  var iArrLength = aText[0].length; // the length of the text array
+  var iScrollAt = 20; // start scrolling up at this many lines
+
+  var iTextPos = 0; // initialise text position
+  var sContents = ''; // initialise contents variable
+  var iRow; // initialise current row
+
+  function typewriter()
+  {
+   sContents =  ' ';
+   iRow = Math.max(0, iIndex-iScrollAt);
+   var destination = document.getElementById("typedtext");
+
+   while ( iRow < iIndex ) {
+    sContents += aText[iRow++] + '<br />';
+   }
+   destination.innerHTML = sContents + aText[iIndex].substring(0, iTextPos) + "_";
+   if ( iTextPos++ == iArrLength ) {
+    iTextPos = 0;
+    iIndex++;
+    if ( iIndex != aText.length ) {
+     iArrLength = aText[iIndex].length;
+     setTimeout("typewriter()", 500);
+    }
+   } else {
+    setTimeout("typewriter()", iSpeed);
+   }
+  }
+
+
+  typewriter();
+</script>
